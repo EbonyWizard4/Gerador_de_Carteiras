@@ -1,48 +1,49 @@
 # import
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
-# configurar o chrome
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-# webscrapping da tabela
-driver.get('https://www.fundamentus.com.br/resultado.php')
-localTabela = '/html/body/div[1]/div[2]/table'
-tabela = driver.find_element('xpath', localTabela)
-# tratamento da tabela
-html_tabela = tabela.get_attribute('outerHTML')
-tabela = pd.read_html(str(html_tabela), thousands='.', decimal=',')[0]
-tabela = tabela.set_index(['Papel'])
-# filtrar colunas
-tabela = tabela[['Cotação', 'EV/EBIT', 'ROIC', 'Liq.2meses', 'Div.Yield']]
 
-# tratamento de dados das colunas
-tabela['ROIC'] = tabela['ROIC'].str.replace("%", "")
-tabela['ROIC'] = tabela['ROIC'].str.replace(".", "")
-tabela['ROIC'] = tabela['ROIC'].str.replace(",", ".")
-tabela['ROIC'] = tabela['ROIC'].astype(float)
-tabela['Div.Yield'] = tabela['Div.Yield'].str.replace("%", "")
-tabela['Div.Yield'] = tabela['Div.Yield'].str.replace(".", "")
-tabela['Div.Yield'] = tabela['Div.Yield'].str.replace(",", ".")
-tabela['Div.Yield'] = tabela['Div.Yield'].astype(float)
-tabela['Div.Yield'] = tabela['Div.Yield'] / 100
+def Model_01():
+    tabela = pd.read_csv('data_base.csv')
 
-# criando coluna lucro sobre preço
-tabela['Lucro' ] = tabela['Cotação' ] * tabela['Div.Yield' ] 
-tabela['Lucro/Preço'] = tabela['Lucro'] / 0.14
+    # construção da carteira
+    # - filtro de valores magic formula
+    liq_esperada = 1000000
+    min_esperado = 0
+    tabela = tabela[tabela['Liq.2meses'] > liq_esperada]
+    tabela = tabela[tabela['EV/EBIT'] > min_esperado]
+    tabela = tabela[tabela['ROIC'] > min_esperado]
 
-# construção da carteira
-# - filtro de valores magic formula
-tabela = tabela[tabela['Liq.2meses'] > 1000000]
-tabela = tabela[tabela['EV/EBIT'] > 0]
-tabela = tabela[tabela['ROIC'] > 0]
-# - filtro de valores aprimorados
-tabela = tabela[tabela['Lucro/Preço'] > tabela['Cotação']]
-# - rankear indices
-tabela['ranking_ev_ebit' ] = tabela['EV/EBIT'].rank(ascending = True)
-tabela['ranking_ev_roic' ] = tabela['ROIC'].rank(ascending = False)
-tabela['ranking_final' ] = tabela['ranking_ev_roic' ] + tabela['ranking_ev_ebit' ] 
-# - ordenar valores mais relevantes
-tabela = tabela.sort_values('ranking_final')
-# exibe tabela
-print(tabela.head(10)[['Cotação', 'EV/EBIT', 'ROIC', 'Liq.2meses', 'ranking_final', 'Lucro/Preço' ]])
+    # criando coluna lucro sobre preço
+    yield_minimo = 0.15
+    yield_maximo = yield_minimo * 2
+
+    tabela['Lucro' ] = tabela['Cotação' ] * tabela['Div.Yield' ] 
+    tabela['Cot.Máxima'] = tabela['Lucro'] / yield_minimo
+
+    # - filtro de valores aprimorados
+    tabela = tabela[tabela['Cot.Máxima'] > tabela['Cotação']]
+
+    # - rankear indices
+    tabela['ranking_ev_ebit' ] = tabela['EV/EBIT'].rank(ascending = True)
+    tabela['ranking_ev_roic' ] = tabela['ROIC'].rank(ascending = False)
+    tabela['ranking_final' ] = tabela['ranking_ev_roic' ] + tabela['ranking_ev_ebit' ] 
+
+    # - ordenar valores mais relevantes
+    tabela = tabela.sort_values('ranking_final')
+
+    # tratamento do Div.Yieald
+    tabela = tabela[tabela['Div.Yield'] > yield_minimo]
+    tabela = tabela[tabela['Div.Yield'] < yield_maximo]
+
+    porcem = 100
+    tabela['Div.Yield'] = tabela['Div.Yield'] * porcem
+
+    # gerar carteira
+    tabela = tabela[['Papel', 'Cotação', 'Cot.Máxima',  'Div.Yield' ]]
+
+    # exibe tabela
+    print(tabela)
+
+    # salvando carteira em csv
+    tabela.to_csv('modelo_01.csv', index=False)
+
+# Model_01()
