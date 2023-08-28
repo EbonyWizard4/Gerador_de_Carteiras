@@ -1,6 +1,8 @@
 # import
 import pandas as pd
 
+from decimal import Decimal
+
 def Model_01():
     tabela = pd.read_csv('data_base.csv')
 
@@ -17,7 +19,7 @@ def Model_01():
     yield_maximo = yield_minimo * 2
 
     tabela['Lucro' ] = tabela['Cotação' ] * tabela['Div.Yield' ] 
-    tabela['Cot.Máxima'] = tabela['Lucro'] / yield_minimo
+    tabela['Cot.Máxima'] = round(tabela['Lucro'] / yield_minimo, 2)
 
     # - filtro de valores aprimorados
     tabela = tabela[tabela['Cot.Máxima'] > tabela['Cotação']]
