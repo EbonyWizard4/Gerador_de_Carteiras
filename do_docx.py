@@ -5,7 +5,7 @@ from docx.shared import Inches
 from docx.enum.text import WD_PARAGRAPH_ALIGNMENT 
 from docx.enum.table import WD_TABLE_ALIGNMENT
 
-def Do_docx():
+def Do_docx(destino):
     document = Document()
 
     marcaTxt = 'Ebw invest'
@@ -47,5 +47,5 @@ def Do_docx():
     p = document.add_paragraph('Esta carteira de ações foi elaborada automaticamente por um programa em Python utilizando como critério de escolha os indicadores apontados por Joel Greenblatt em seu best seller “A Fórmula Mágica de Joel Greenblatt para Bater o Mercado de Ações” e os critérios sobre preço expostos por Louise Barsi em um podcast gravado com Tiago Nigro.\n')
     p = document.add_paragraph('A Fórmula Mágica de Joel Greenblatt é um modelo de investimentos de longo prazo com rentabilidade astronômica comprovada por mais de 15 anos de aplicações feitas pelo autor. Louise Barsi hoje é uma das referências nacionais mais bem conceituadas no mundo dos investimentos. Tiago Nigro é dono de um dos maiores canais nacionais de investimentos do youtube com uma grande carreira no mundo dos investimentos.\n')
     p = document.add_paragraph('Ressaltamos, com tudo, que este projeto tem como pretensão principal ser de cunho didático não sendo com isso de nenhuma maneira uma recomendação de investimento resguardando aos envolvidos de quaisquer más interpretações a respeito.\n')
-    document.save('Carteiras/modelo_01.docx')
+    document.save(destino+'/modelo_01.docx')
 # Do_docx()
