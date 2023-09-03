@@ -5,7 +5,7 @@ from tkinter import filedialog
 
 from scraping import Scraping
 from modelo_01 import Model_01
-from do_pdf import Do_pdf
+from do_pdf.do_pdf import Do_pdf
 
 
 """Executa os modulos do programa"""
