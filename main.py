@@ -8,10 +8,15 @@ from modelo_01 import Model_01
 from do_docx import Do_docx
 
 
-
+'''Executa os modulos do programa'''
 def Criar():
+    '''Coletar dados da internet'''
     # Scraping()
+
+    '''Criar carteira através do modelo'''
     # Model_01()
+
+    '''Salva o relatório em diretório especificado'''
     destino = Seletor()
     Do_docx(destino)
     root.destroy()
@@ -25,7 +30,7 @@ root.resizable(width=False, height=False)
 
 '''Criando seletor'''
 def Seletor():
-    destino = ctk.filedialog.askdirectory()
+    destino = ctk.filedialog.askdirectory(title='Escolha onde salvar o relatório')
     return destino
 
 '''Criar Frame para exibir elementos Titulo da Tela'''

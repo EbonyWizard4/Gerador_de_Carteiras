@@ -12,9 +12,9 @@ tabela = driver.find_element('xpath', localTabela)
 # tratamento da tabela
 html_tabela = tabela.get_attribute('outerHTML')
 tabela = pd.read_html(str(html_tabela), thousands='.', decimal=',')[0]
-tabela = tabela.set_index(['Papel'])
+# tabela = tabela.set_index(['Papel'])
 # filtrar colunas
-tabela = tabela[['Cotação', 'EV/EBIT', 'ROIC', 'Liq.2meses']]
+tabela = tabela[['Papel', 'Cotação', 'EV/EBIT', 'ROIC', 'Liq.2meses']]
 # tratamento de dados das colunas
 tabela['ROIC'] = tabela['ROIC'].str.replace("%", "")
 tabela['ROIC'] = tabela['ROIC'].str.replace(".", "")
@@ -32,4 +32,6 @@ tabela['ranking_final' ] = tabela['ranking_ev_roic' ] + tabela['ranking_ev_ebit'
 # - ordenar valores mais relevantes
 tabela = tabela.sort_values('ranking_final')
 # exibe tabela
-print(tabela.head(10)[['Cotação', 'EV/EBIT', 'ROIC', 'Liq.2meses', 'ranking_final' ]])
+tabela = tabela.head(10)[['Papel', 'Cotação', 'EV/EBIT', 'ROIC', 'Liq.2meses', 'ranking_final' ]]
+print(tabela)
+tabela.to_csv('magicForm.csv', index=False)
