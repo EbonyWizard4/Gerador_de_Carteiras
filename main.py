@@ -5,7 +5,7 @@ from tkinter import filedialog
 
 from scraping import Scraping
 from modelo_01 import Model_01
-from do_docx import Do_docx
+from do_pdf import Do_pdf
 
 
 '''Executa os modulos do programa'''
@@ -18,7 +18,7 @@ def Criar():
 
     '''Salva o relatório em diretório especificado'''
     destino = Seletor()
-    Do_docx(destino)
+    Do_pdf(destino)
     root.destroy()
 
 '''Criar Janela Principal'''

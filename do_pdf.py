@@ -24,50 +24,50 @@ class PDF(FPDF):
         # Page number
         self.cell(0, 10, 'Page ' + str(self.page_no()) + '/{nb}', 0, 0, 'C')
 
+def Do_pdf(Destino):
+    # Instantiation of inherited class
+    pdf = PDF()
+    pdf.alias_nb_pages()
+    pdf.add_page()
+    pdf.set_font('Arial', 'B', 24)
+    pdf.write(10, f"As Melhores Ações \nCom Melhor Custo/Benefício")
+    pdf.ln(40)
+    pdf.set_font('Times', '', 12)
 
-# Instantiation of inherited class
-pdf = PDF()
-pdf.alias_nb_pages()
-pdf.add_page()
-pdf.set_font('Arial', 'B', 24)
-pdf.write(10, f"As Melhores Ações \nCom Melhor Custo/Benefício")
-pdf.ln(40)
-pdf.set_font('Times', '', 12)
-
-TABLE_DATA = (
-    pd.read_csv('magicForm.csv')
-)
-TABLE_DATA = TABLE_DATA.applymap(str)
-columns = [list(TABLE_DATA)]
-rows = TABLE_DATA.values.tolist()
-data = columns + rows
-
-with pdf.table(
-    borders_layout='MINIMAL',
-    cell_fill_color=200,
-    cell_fill_mode='ROWS',
-    line_height=pdf.font_size * 2.5,
-    text_align='CENTER',
-) as table:
-    for data_row in data:
-        row = table.row()
-        for datum in data_row:
-            row.cell(datum)
-
-'''Ultima página'''
-pdf.add_page()
-pdf.set_margin(40)
-pdf.set_font('Arial', 'B', 24)
-pdf.write(10, f"DISCLAIMER")
-pdf.ln(15)
-pdf.set_margin(20)
-pdf.set_font('Times', '', 12)
-documento = Document("Disclaimer.docx")
-for paragrafo in documento.paragraphs:
-    pdf.write(
-    5,
-    paragrafo.text
+    TABLE_DATA = (
+        pd.read_csv('magicForm.csv')
     )
-    pdf.ln(10)
+    TABLE_DATA = TABLE_DATA.applymap(str)
+    columns = [list(TABLE_DATA)]
+    rows = TABLE_DATA.values.tolist()
+    data = columns + rows
 
-pdf.output('tuto2.pdf', 'F')
+    with pdf.table(
+        borders_layout='MINIMAL',
+        cell_fill_color=200,
+        cell_fill_mode='ROWS',
+        line_height=pdf.font_size * 2.5,
+        text_align='CENTER',
+    ) as table:
+        for data_row in data:
+            row = table.row()
+            for datum in data_row:
+                row.cell(datum)
+
+    '''Ultima página'''
+    pdf.add_page()
+    pdf.set_margin(40)
+    pdf.set_font('Arial', 'B', 24)
+    pdf.write(10, f"DISCLAIMER")
+    pdf.ln(15)
+    pdf.set_margin(20)
+    pdf.set_font('Times', '', 12)
+    documento = Document("Disclaimer.docx")
+    for paragrafo in documento.paragraphs:
+        pdf.write(
+        5,
+        paragrafo.text
+        )
+        pdf.ln(10)
+
+    pdf.output(Destino+'/Carteira.pdf', 'F')
