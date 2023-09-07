@@ -1,58 +1,31 @@
 # Gerador Automático de Carteira de investimento
 
-Este projeto elaborado em python,p de cunho educativo, aplicando os critérios expostos no bestseller 'A Fórmula Mágica de Joel Greenblatt para Bater o Mercado de Ações', tem como objetivo fornecer informações que possam auxiliar o investidor a tomar sua própria decisão de investimento, gerando uma Carteira de investimento a partir de uma análise do mercado financeiro feita de forma automática.
+Este projeto desenvolvido em python tem a finalidade de aplicar modelos de análise fundamentalista de grandes nomes do mercdado para composição de carteiras de investimentos de forma automatizada.
 
 ## 🚀 Funcionalidade
 
-Como o programa funciona
+Utilizando tecnicas de WebScraping e tratamento de dados, ranquea os ativos que melhor se enquadram nas regras de negógio dos modelos fundamentalistas aplicados.
 
 Consulte **[Implantação](#-implanta%C3%A7%C3%A3o)** para saber como implantar o projeto.
 
 ### 📋 Pré-requisitos
 
-De que coisas você precisa para instalar o software e como instalá-lo?
+Neste estágio o programa utiliza o selenium para buscar os dados através do navegador Chrome, por tanto é crucial que este esteja instalado na máquina para o correto funcionamento do programa.
+A demais é nescessário fazer a instalação do pacote de bibliotécas listado no arquivo requirements.txt.
+Você pode instalar o pacote de biblioteca com facilidade utilizando o comando:
 
 ```
-Dar exemplos
+pip install requirements
 ```
 
 ### 🔧 Instalação
 
-Uma série de exemplos passo-a-passo que informam o que você deve executar para ter um ambiente de desenvolvimento em execução.
-
-Diga como essa etapa será:
+como o Projeto está em faze inicial não possui um instalador. Faça um clono do repositório em sua máquina para copilalo através do módulo main.py através do comando:
 
 ```
-Dar exemplos
+python main.py
 ```
-
-E repita:
-
-```
-Até finalizar
-```
-
-Termine com um exemplo de como obter dados do sistema ou como usá-los para uma pequena demonstração.
-
-## ⚙️ Executando os testes
-
-Explicar como executar os testes automatizados para este sistema.
-
-### 🔩 Analise os testes de ponta a ponta
-
-Explique que eles verificam esses testes e porquê.
-
-```
-Dar exemplos
-```
-
-### ⌨️ E testes de estilo de codificação
-
-Explique que eles verificam esses testes e porquê.
-
-```
-Dar exemplos
-```
+Uma interface simples será apresentada ao usuário, precione o botão gerar e defina o diretório onde será salvo o documento. 
 
 ## 📦 Implantação
 
