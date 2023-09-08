@@ -1,9 +1,6 @@
 # import
 import pandas as pd
 
-from decimal import Decimal
-
-
 def Model_01():
     tabela = pd.read_csv("data_base.csv")
 
