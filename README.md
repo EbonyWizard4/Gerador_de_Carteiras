@@ -20,9 +20,12 @@ pip install requirements
 
 ### 🔧 Instalação
 
-como o Projeto está em faze inicial não possui um instalador. Faça um clono do repositório em sua máquina para copilalo através do módulo main.py através do comando:
+Como o Projeto está em faze inicial, ainda não possui um instalador. Faça um clone do repositório em sua máquina para copilalo através do módulo main.py.
+
+Após clonar o repositório em sua máquina execute os seguintes comandos no terminal:
 
 ```
+. magicform/bin/activate
 python main.py
 ```
 Uma interface simples será apresentada ao usuário, precione o botão gerar e defina o diretório onde será salvo o documento. 
