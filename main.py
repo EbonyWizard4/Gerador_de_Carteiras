@@ -6,51 +6,44 @@ from scraping import Scraping
 from modelos import Model_01
 from do_pdf.do_pdf import Do_pdf
 
-
-# """Executa os modulos do programa"""
-
-
 def criar():
-    """Executa o Programa em ordem"""
-    # """Coletar dados da internet"""
+    """Executa o programa em ordem
+    """
     Scraping()
-
-    # """Criar carteira através do modelo"""
     Model_01()
-
-    # """Salva o relatório em diretório especificado"""
     destino = seletor()
     Do_pdf(destino)
     root.destroy()
 
+class Root(ctk.CTk):
+    """Criador da Tela
 
-# """Criar Janela Principal"""
-root = ctk.CTk()
-root._set_appearance_mode("dark-blue")
-root.title("Ebw Invest")
-root.geometry("400x200")
-root.resizable(width=False, height=False)
+    Args:
+        ctk (Lib): Bibliotéca Python
+    """
 
-# """Criando seletor"""
-
+    def root_gen(self, mode):
+        """Configurações da janela"""
+        self._set_appearance_mode(mode)
+        self.geometry("400x200")
+        self.resizable(width=False, height=False)
+        frame = ctk.CTkFrame(master=root, width=390, height=190).place(x=5, y=5)
+        ctk.CTkLabel(
+            frame, text="Criador Automático de\nCarteiras de Investimento", font=("arial", 20)
+        ).pack(pady=25)
+        ctk.CTkButton(frame, text="Gerar", font=("arial", 20), command=criar).pack(pady=10)
 
 def seletor():
-    """Escolhe diretório de saída"""
+    """
+    Define diretório de saída
+    Returns:
+        str: caminho para diretório de saída
+    """
     destino = ctk.filedialog.askdirectory(title="Escolha onde salvar o relatório")
     return destino
 
-
-# """Criar Frame para exibir elementos Titulo da Tela"""
-FRAME = ctk.CTkFrame(master=root, width=390, height=190).place(x=5, y=5)
-
-TEXT = ctk.CTkLabel(
-    FRAME, text="Criador Automático de\nCarteiras de Investimento", font=("arial", 20)
-)
-TEXT.pack(pady=25)
-
-BTN = ctk.CTkButton(FRAME, text="Gerar", font=("arial", 20), command=criar).pack(
-    pady=10
-)
-# ttk.Button(frm, text="Criar", command=Criar).grid(column=0, row=1)
-if __name__=="__main__":
+if __name__ == "__main__":
+    root = Root()
+    root.title("Ebw Invest")
+    root.root_gen("dark")
     root.mainloop()
