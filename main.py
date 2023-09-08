@@ -19,7 +19,7 @@ class Root(ctk.CTk):
     """Criador da Tela
 
     Args:
-        ctk (Lib): Bibliotéca Python
+        ctk (Lib): Usado para criar Telas
     """
 
     def root_gen(self, mode):
