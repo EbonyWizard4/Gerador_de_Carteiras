@@ -1,4 +1,4 @@
-![Reader](/img/EbwInvest.png "My interprise")
+![Header](/img/EbwInvest.png "Ebw Invest")
 
 # Gerador Automático de Carteira de investimento
 
