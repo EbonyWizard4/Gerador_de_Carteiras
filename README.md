@@ -6,8 +6,6 @@ Este projeto desenvolvido em python tem a finalidade de aplicar modelos de anál
 
 Utilizando tecnicas de WebScraping e tratamento de dados, ranquea os ativos que melhor se enquadram nas regras de negógio dos modelos fundamentalistas aplicados.
 
-Consulte **[Implantação](#-implanta%C3%A7%C3%A3o)** para saber como implantar o projeto.
-
 ### 📋 Pré-requisitos
 
 Neste estágio o programa utiliza o selenium para buscar os dados através do navegador Chrome, por tanto é crucial que este esteja instalado na máquina para o correto funcionamento do programa.
@@ -29,36 +27,31 @@ Uma interface simples será apresentada ao usuário, precione o botão gerar e d
 
 ## 📦 Implantação
 
-Adicione notas adicionais sobre como implantar isso em um sistema ativo
+Foi tomado o cuidado de produzir o projeto em módulos, de forma que possa ser fragmentado, adaptado e reaproveitado para novos projetos.
 
 ## 🛠️ Construído com
 
 Mencione as ferramentas que você usou para criar seu projeto
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - O framework web usado
-* [Maven](https://maven.apache.org/) - Gerente de Dependência
-* [ROME](https://rometools.github.io/rome/) - Usada para gerar RSS
-
-## 🖇️ Colaborando
-
-Por favor, leia o [COLABORACAO.md](https://gist.github.com/usuario/linkParaInfoSobreContribuicoes) para obter detalhes sobre o nosso código de conduta e o processo para nos enviar pedidos de solicitação.
-
-## 📌 Versão
-
-Nós usamos [SemVer](http://semver.org/) para controle de versão. Para as versões disponíveis, observe as [tags neste repositório](https://github.com/suas/tags/do/projeto). 
+* [Python](https://www.python.org/) - A linguagem que possibilitou tudo
+* [Selenium](https://www.selenium.dev/) - Utilizado para conseguir os dados
+* [Pandas](https://pandas.pydata.org/) - Usado para tratar os dados
+* [FPDF](https://py-pdf.github.io/fpdf2/index.html) - usado para produzir o relatório final
+* [Tkinter](https://docs.python.org/3/library/tkinter.html) - utilizado para criar a interface gráfica
 
 ## ✒️ Autores
 
-Mencione todos aqueles que ajudaram a levantar o projeto desde o seu início
+MIdealizado e produzido por:
 
-* **Um desenvolvedor** - *Trabalho Inicial* - [umdesenvolvedor](https://github.com/linkParaPerfil)
-* **Fulano De Tal** - *Documentação* - [fulanodetal](https://github.com/linkParaPerfil)
+[Jhone Antonio](https://github.com/EbonyWizard4)
 
-Você também pode ver a lista de todos os [colaboradores](https://github.com/usuario/projeto/colaboradores) que participaram deste projeto.
+* **Problemática** - *Identificar e Processar*
+* **Pesquisa** - *Extruturação*
+* **Documentação** - *Elaboração e Viabilização*
+* **Desenvolvimento** - *Criação e revisão*
+* **Manutenção** - *Ampliação e escalabilidade*
 
-## 📄 Licença
-
-Este projeto está sob a licença (sua licença) - veja o arquivo [LICENSE.md](https://github.com/usuario/projeto/licenca) para detalhes.
+Este projeto teve início ao aplicar os conhecimentos adquiridos em um evento promovido por [Breno Sulivan](https://www.youtube.com/@varos-programacao). Deixo aqui minha sinsera gratidão.
 
 ## 🎁 Expressões de gratidão
 
