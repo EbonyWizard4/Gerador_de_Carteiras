@@ -1,3 +1,5 @@
+![Reader](/img/EbwInvest.png "My interprise")
+
 # Gerador Automático de Carteira de investimento
 
 Este projeto desenvolvido em python tem a finalidade de aplicar modelos de análise fundamentalista de grandes nomes do mercdado para composição de carteiras de investimentos de forma automatizada.
