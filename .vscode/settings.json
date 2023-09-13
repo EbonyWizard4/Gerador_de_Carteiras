@@ -1,3 +1,12 @@
 {
-  "materialkv.pythonFile": "main.py"
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.pylint",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.formatOnType": true,
+    "editor.wordBasedSuggestions": true
+
+  },
+  "materialkv.pythonFile": "main.py",
+  "python.terminal.activateEnvironment": false,
+  "python.lintin.pylintEnabled": true
 }

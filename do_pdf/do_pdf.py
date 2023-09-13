@@ -1,5 +1,4 @@
 import pandas as pd
-import csv
 
 from docx import Document
 from fpdf import FPDF
