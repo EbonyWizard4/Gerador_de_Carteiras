@@ -1,6 +1,7 @@
 # import
 import pandas as pd
 
+
 def Model_01():
     tabela = pd.read_csv("data_base.csv")
 
