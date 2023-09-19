@@ -2,7 +2,6 @@ import pandas as pd
 
 from docx import Document
 from fpdf import FPDF
-from fpdf.enums import TableCellFillMode
 
 WIDTH = 210
 HEIGHT = 297

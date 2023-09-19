@@ -5,7 +5,7 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 
 
-def Scraping():
+def scraping():
     # configurar o chrome
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     # webscrapping da tabela
@@ -16,7 +16,7 @@ def Scraping():
     html_tabela = tabela.get_attribute("outerHTML")
     tabela = pd.read_html(str(html_tabela), thousands=".", decimal=",")[0]
     # filtrar colunas
-    tabela = tabela[["Papel", "Cotação", "EV/EBIT", "ROIC", "Liq.2meses", "Div.Yield"]]
+    # tabela = tabela[["Papel", "Cotação", "EV/EBIT", "ROIC", "Liq.2meses", "Div.Yield"]]
 
     # tratamento de dados das colunas
     tabela["ROIC"] = tabela["ROIC"].str.replace("%", "")
@@ -27,10 +27,10 @@ def Scraping():
     tabela["Div.Yield"] = tabela["Div.Yield"].str.replace(".", "")
     tabela["Div.Yield"] = tabela["Div.Yield"].str.replace(",", ".")
     tabela["Div.Yield"] = tabela["Div.Yield"].astype(float)
-    tabela["Div.Yield"] = tabela["Div.Yield"] / 100
+    tabela["Div.Yield"] = round(tabela["Div.Yield"] / 100, 2)
 
     print(tabela)
-    tabela.to_csv("data_base.csv", index=False)
+    tabela.to_csv("CSV/data_base.csv", index=False)
 
 
-# scraping()
+scraping()
