@@ -62,6 +62,12 @@ class Tela(CTk):
         )
         button.place(x=42, y=585)
 
+        self.carregar()
+        
+    def carregar(self):
+        """
+        Gera tela de carregamento
+        """
         self.tab_gen()
 
 
