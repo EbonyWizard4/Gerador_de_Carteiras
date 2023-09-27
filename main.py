@@ -1,5 +1,5 @@
-"""Modul principal
-
+"""
+Modul principal
 """
 from telas import Tela
 from scraping import Scraping

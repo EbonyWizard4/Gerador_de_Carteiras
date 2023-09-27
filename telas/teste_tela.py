@@ -8,6 +8,7 @@ from tkinter import PhotoImage, Entry, END
 import pandas as pd
 from customtkinter import CTk, CTkLabel, CTkButton, CTkTabview, CTkFrame
 from docx import Document
+from scraping import Scraping
 
 
 class Tela(CTk):
@@ -62,12 +63,11 @@ class Tela(CTk):
         )
         button.place(x=42, y=585)
 
-        self.carregar()
+        self.processo()
         
-    def carregar(self):
-        """
-        Gera tela de carregamento
-        """
+    def processo(self):
+
+        Scraping()
         self.tab_gen()
 
 

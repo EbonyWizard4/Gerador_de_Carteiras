@@ -63,5 +63,7 @@ class Scraping:
         # Salvando arquivo CSV
         tabela.to_csv("CSV/data_base.csv", index=False)
 
+        return True
+
 
 # scraping()
