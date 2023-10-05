@@ -6,7 +6,7 @@ Teste de Tela
 import tkinter.filedialog as tkfd
 from tkinter import PhotoImage, Entry, END
 import pandas as pd
-from customtkinter import CTk, CTkLabel, CTkButton, CTkTabview, CTkFrame
+from customtkinter import CTk, CTkLabel, CTkButton, CTkTabview, CTkFrame, CTkEntry
 from docx import Document
 from scraping import Scraping
 
@@ -127,7 +127,7 @@ class Tela(CTk):
 
 
             tabela = CTkFrame(tab_view.tab(tab_item))
-            tabela.place(x=284, y=0)
+            tabela.place(x=287, y=30)
 
             # le as informções no arquivo csv
             table_data = pd.read_csv(caminho)
@@ -139,10 +139,8 @@ class Tela(CTk):
             # cria a tabela de acordo com os valores do arquivo csv
             for row_indice in range(len(rows)):
                 for col_indice in range(4):
-                    entry_item = Entry(
+                    entry_item = CTkEntry(
                         tabela,
-                        width=11,
-                        fg="blue",
                         font=("Arial", 16, "bold"),
                         justify="center",
                     )
@@ -151,3 +149,4 @@ class Tela(CTk):
                     entry_item.grid(row=row_indice, column=col_indice)
                     # Insere o valor do arquivo csv em cada elemento da tabela
                     entry_item.insert(END, data[row_indice][col_indice])
+                    entry_item.configure(state="disabled")
