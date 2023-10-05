@@ -2,14 +2,12 @@
 Teste de Tela
 """
 
-
 import tkinter.filedialog as tkfd
-from tkinter import PhotoImage, Entry, END
+from tkinter import PhotoImage, END
 import pandas as pd
 from customtkinter import CTk, CTkLabel, CTkButton, CTkTabview, CTkFrame, CTkEntry
 from docx import Document
-from scraping import Scraping
-
+from do_pdf import Do_pdf
 
 class Tela(CTk):
     """
@@ -17,24 +15,6 @@ class Tela(CTk):
     Args:
         ctk (lib): Usado para criar tela
     """
-
-    def criar(self):
-        """
-        Executa o programa em ordem
-        """
-        destino = self.seletor()
-        # Do_pdf(destino)
-        # root.destroy()
-        print(destino)
-
-    def seletor(self):
-        """
-        Define diretório de saída
-        Returns:
-            str: caminho para diretório de saída
-        """
-        destino = tkfd.askdirectory(title="Escolha onde salvar o relatório")
-        return destino
 
     def root_gen(self, mode: str, title: str):
         """
@@ -44,13 +24,16 @@ class Tela(CTk):
             title (tsr): Titulo da Tela
         """
 
+        # - Propriedades da tela
         self._set_appearance_mode(mode)
         self.geometry("900x650")
         self.resizable(False, False)
         self.title(title)
+
+        # - Elementos da tela
         bg_image = PhotoImage(file="img/fg_900x650.png")
-        lable1 = CTkLabel(self, image=bg_image, text="")
-        lable1.place(x=0, y=0)
+        beck_grownd = CTkLabel(self, image=bg_image, text="")
+        beck_grownd.place(x=0, y=0)
         button = CTkButton(
             self,
             width=181,
@@ -63,20 +46,14 @@ class Tela(CTk):
         )
         button.place(x=42, y=585)
 
-        self.processo()
-        
-    def processo(self):
-
-        Scraping()
         self.tab_gen()
-
 
     def tab_gen(self):
         """
-        Gera Tabela
+        Gera Tabela na tela
         """
         # lista de tabelas para criar
-        list_tabs = {
+        tab_list = {
             "Magic Form": "CSV/magicForm.csv",
             "Benjamin Graham": "CSV/ben_grahan.csv",
             "Décio Bazin": "CSV/decio_bazin.csv",
@@ -90,11 +67,14 @@ class Tela(CTk):
         )
         tab_view.place(x=14, y=99)
 
-        # inserção dos tabs de acordo com os valores da list_tabs
-        for tab_item, caminho in list_tabs.items():
+        # inserção dos tabs no tabview de acordo com os valores da tab_list
+        for tab_item, caminho in tab_list.items():
+            # - adicionando tab's
             tab_view.add(tab_item)
             tab_view.tab(tab_item).grid_columnconfigure(0, weight=1)  
 
+            # - elementos dos tabs
+            # -- descrição
             discribe = CTkFrame(tab_view.tab(tab_item))
             discribe.place(x=0, y=0)
 
@@ -109,11 +89,11 @@ class Tela(CTk):
             titulo.pack()
 
             doc = Document(f"documents/{tab_item}.docx")
-            reslt = [p.text for p in doc.paragraphs]
+            read = [p.text for p in doc.paragraphs]
 
             texto = CTkLabel(
                 discribe,
-                text=reslt[0],
+                text=read[0],
                 font=("Arial", 20,),
                 wraplength= 220,
                 width=238,
@@ -123,9 +103,8 @@ class Tela(CTk):
 
                 )
             texto.pack(padx=20)
-            # texto.insert("1.1",reslt[0])
 
-
+            # -- tabela
             tabela = CTkFrame(tab_view.tab(tab_item))
             tabela.place(x=287, y=30)
 
@@ -150,3 +129,12 @@ class Tela(CTk):
                     # Insere o valor do arquivo csv em cada elemento da tabela
                     entry_item.insert(END, data[row_indice][col_indice])
                     entry_item.configure(state="disabled")
+
+
+    def criar(self):
+        """
+        Cria o Relatório em pdf
+        """
+        destino = tkfd.askdirectory(title="Escolha onde salvar o relatório")
+        Do_pdf(destino)
+        # root.destroy()
