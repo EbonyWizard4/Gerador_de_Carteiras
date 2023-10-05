@@ -7,7 +7,7 @@ from tkinter import PhotoImage, END
 import pandas as pd
 from customtkinter import CTk, CTkLabel, CTkButton, CTkTabview, CTkFrame, CTkEntry
 from docx import Document
-from do_pdf import Do_pdf
+from do_pdf import do_pdf
 
 class Tela(CTk):
     """
@@ -136,5 +136,5 @@ class Tela(CTk):
         Cria o Relatório em pdf
         """
         destino = tkfd.askdirectory(title="Escolha onde salvar o relatório")
-        Do_pdf(destino)
+        do_pdf(destino)
         # root.destroy()

@@ -1,1 +1,3 @@
-from .do_pdf import Do_pdf
+"""Importação do Modulo
+"""
+from .do_pdf import do_pdf
