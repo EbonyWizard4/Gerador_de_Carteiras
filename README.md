@@ -4,27 +4,35 @@
 
 Este projeto desenvolvido em python tem a finalidade de aplicar modelos de análise fundamentalista de grandes nomes do mercdado para composição de carteiras de investimentos de forma automatizada.
 
+![Gerador](img/gerador_de_carteriras.gif)
+
 ## 🚀 Funcionalidade
 
 Utilizando tecnicas de WebScraping e tratamento de dados, ranquea os ativos que melhor se enquadram nas regras de negógio dos modelos fundamentalistas aplicados.
+Após a visualização das carteiras na tela do programa podemos salvar as informações em um arquivo pdf estilizado utilizando o botão <b>Salvar</b>.
 
 ### 📋 Pré-requisitos
 
-Neste estágio o programa utiliza o selenium para buscar os dados através do navegador Chrome, por tanto é crucial que este esteja instalado na máquina para o correto funcionamento do programa.
-A demais é nescessário fazer a instalação do pacote de bibliotécas listado no arquivo requirements.txt.
-Você pode instalar o pacote de biblioteca com facilidade utilizando o comando:
+Neste estágio passamos a utilizar o beautiful soup para buscar os dados na pagina [Fundamentus](https://www.fundamentus.com.br/resultado.php#), um dos mais famosos sites do genero.
+Usamos um modelo de cabeçalho de pesquisa para o navegador FireFox e por tanto recomendamos a instalação do mesmo.
+A demais, caso nescessário, deve-se fazer a instalação do pacote de bibliotécas listado no arquivo requirements.txt.
+A instalação das bibliotecas pode ser feita com facilidade utilizando o comando:
 
 ```
 pip install requirements
 ```
+Geramos um arquivo executável [main](dist/main) que pode ser encotrado no diretório ./dist dete repositório para facilitar os testes.
+Basta fazer as instalações necessárias executar o arquivo. 
+
 
 ### 🔧 Instalação
 
-Como o Projeto está em faze inicial, ainda não possui um instalador. Faça um clone do repositório em sua máquina para copilalo através do módulo main.py.
+Como o Projeto está em faze inicial, ainda não possui um instalador. Faça um clone do repositório em sua máquina para copilalo através do módulo main.py. Ou executá-lo através do arquivo [main](dist/main) no diretório <i>/dist</i> deste repositório.
 
 Após clonar o repositório em sua máquina execute os seguintes comandos no terminal:
 
 ```
+pip install requirements
 . magicform/bin/activate
 python main.py
 ```
@@ -46,7 +54,7 @@ Mencione as ferramentas que você usou para criar seu projeto
 
 ## ✒️ Autores
 
-MIdealizado e produzido por:
+Idealizado e produzido por:
 
 [Jhone Antonio](https://github.com/EbonyWizard4)
 
@@ -68,3 +76,5 @@ Este projeto teve início ao aplicar os conhecimentos adquiridos em um evento pr
 
 ---
 ⌨️ com ❤️ por [Armstrong Lohãns](https://gist.github.com/lohhans) 😊
+
+Editado por [Jhone Antonio](https://github.com/EbonyWizard4)
