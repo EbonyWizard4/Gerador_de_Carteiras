@@ -45,27 +45,13 @@ class Scraping:
             # Criando tabela
             tabela = pd.read_html(str(table), thousands=".", decimal=",")[0]
 
-            # # filtrar colunas
-            # # tabela = tabela[["Papel", "Cotação", "EV/EBIT", "ROIC", "Liq.2meses", "Div.Yield"]]
-
-            # tratamento de dados das colunas principais
-            # tabela["ROIC"] = tabela["ROIC"].str.replace("%", "")
-            # tabela["ROIC"] = tabela["ROIC"].str.replace(".", "")
-            # tabela["ROIC"] = tabela["ROIC"].str.replace(",", ".")
-            # tabela["ROIC"] = tabela["ROIC"].astype(float)
-            # tabela["Div.Yield"] = tabela["Div.Yield"].str.replace("%", "")
-            # tabela["Div.Yield"] = tabela["Div.Yield"].str.replace(".", "")
-            # tabela["Div.Yield"] = tabela["Div.Yield"].str.replace(",", ".")
-            # tabela["Div.Yield"] = tabela["Div.Yield"].astype(float)
-            # tabela["Div.Yield"] = round(tabela["Div.Yield"] / 100, 2)
-
-            # print(tabela)
-
             # Salvando arquivo CSV
             tabela.to_csv("CSV/data_base.csv", index=False)
-            print("\nSCRAPING!\n")
 
+            # confirmação de funcionamento
+            print("\nSCRAPING!\n")
             return True
+
         except RecursionError:
             print("\nFALHA NA REQUIZIÇÃO!\n")
             return ""

@@ -61,7 +61,7 @@ class MagicForm():
             # print(tabela)
 
             # Salva a tabela
-            tabela.to_csv("magicForm.csv", index=False)
+            tabela.to_csv("CSV/magicForm.csv", index=False)
             print("\nMagic Formula\n")
             return True
         except RecursionError:

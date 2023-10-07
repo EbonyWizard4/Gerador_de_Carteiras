@@ -71,7 +71,7 @@ class Tela(CTk):
         for tab_item, caminho in tab_list.items():
             # - adicionando tab's
             tab_view.add(tab_item)
-            tab_view.tab(tab_item).grid_columnconfigure(0, weight=1)  
+            tab_view.tab(tab_item).grid_columnconfigure(0, weight=1)
 
             # - elementos dos tabs
             # -- descrição
