@@ -37,33 +37,39 @@ class Scraping:
             'Connection'        : 'close'
         }
         link = 'https://www.fundamentus.com.br/resultado.php'
-        requisicao = requests.get(link, headers=headers, timeout=5).text
-        soup = BeautifulSoup(requisicao, "html.parser")
-        table = soup.find('table')
+        try:
+            requisicao = requests.get(link, headers=headers, timeout=5).text
+            soup = BeautifulSoup(requisicao, "html.parser")
+            table = soup.find('table')
 
-        # Criando tabela
-        tabela = pd.read_html(str(table), thousands=".", decimal=",")[0]
+            # Criando tabela
+            tabela = pd.read_html(str(table), thousands=".", decimal=",")[0]
 
-        # # filtrar colunas
-        # # tabela = tabela[["Papel", "Cotação", "EV/EBIT", "ROIC", "Liq.2meses", "Div.Yield"]]
+            # # filtrar colunas
+            # # tabela = tabela[["Papel", "Cotação", "EV/EBIT", "ROIC", "Liq.2meses", "Div.Yield"]]
 
-        # tratamento de dados das colunas principais
-        tabela["ROIC"] = tabela["ROIC"].str.replace("%", "")
-        tabela["ROIC"] = tabela["ROIC"].str.replace(".", "")
-        tabela["ROIC"] = tabela["ROIC"].str.replace(",", ".")
-        tabela["ROIC"] = tabela["ROIC"].astype(float)
-        tabela["Div.Yield"] = tabela["Div.Yield"].str.replace("%", "")
-        tabela["Div.Yield"] = tabela["Div.Yield"].str.replace(".", "")
-        tabela["Div.Yield"] = tabela["Div.Yield"].str.replace(",", ".")
-        tabela["Div.Yield"] = tabela["Div.Yield"].astype(float)
-        tabela["Div.Yield"] = round(tabela["Div.Yield"] / 100, 2)
+            # tratamento de dados das colunas principais
+            # tabela["ROIC"] = tabela["ROIC"].str.replace("%", "")
+            # tabela["ROIC"] = tabela["ROIC"].str.replace(".", "")
+            # tabela["ROIC"] = tabela["ROIC"].str.replace(",", ".")
+            # tabela["ROIC"] = tabela["ROIC"].astype(float)
+            # tabela["Div.Yield"] = tabela["Div.Yield"].str.replace("%", "")
+            # tabela["Div.Yield"] = tabela["Div.Yield"].str.replace(".", "")
+            # tabela["Div.Yield"] = tabela["Div.Yield"].str.replace(",", ".")
+            # tabela["Div.Yield"] = tabela["Div.Yield"].astype(float)
+            # tabela["Div.Yield"] = round(tabela["Div.Yield"] / 100, 2)
 
-        # print(tabela)
+            # print(tabela)
 
-        # Salvando arquivo CSV
-        tabela.to_csv("CSV/data_base.csv", index=False)
+            # Salvando arquivo CSV
+            tabela.to_csv("CSV/data_base.csv", index=False)
+            print("\nSCRAPING!\n")
 
-        return True
+            return True
+        except RecursionError:
+            print("\nFALHA NA REQUIZIÇÃO!\n")
+            return ""
 
+if __name__=="__main__":
+    Scraping().scraping()
 
-# scraping()

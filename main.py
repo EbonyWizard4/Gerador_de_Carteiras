@@ -1,15 +1,18 @@
 """
 Modul principal
 """
-from telas import Tela
+# from telas import Tela
 from scraping import Scraping
+from modelos import MagicForm
 
 if __name__ == "__main__":
-    scraping = Scraping()
+    scraping = Scraping().scraping()
     if scraping:
-        root = Tela()
-        # root.carregar()
-        root.root_gen("dark", "Stock Portfolio")
-        root.mainloop()
+        MagicForm().magic_form()
+
+        # root = Tela()
+        # # root.carregar()
+        # root.root_gen("dark", "Stock Portfolio")
+        # root.mainloop()
     else:
         print('Deu ruim no scraping')

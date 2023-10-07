@@ -1,3 +1,3 @@
 """Metodos Acessíveis
 """
-from .teste_tela import Tela
+from .tela import Tela
